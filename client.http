@@ -1,0 +1,15 @@
+GET http://localhost:3000
+
+###
+
+Get http://localhost:3000/bye
+
+###
+POST http://localhost:3000/register
+
+###
+POST http://localhost:3000/login
+//define the content type ---> json
+Content-Type: application/json
+
+{"username" : "KHOO", "password" : 112233,"email" : "bo22120047@student.utem.edu.my"}
