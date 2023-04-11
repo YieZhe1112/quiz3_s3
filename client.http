@@ -10,6 +10,23 @@ POST http://localhost:3000/register
 ###
 POST http://localhost:3000/login
 //define the content type ---> json
+
 Content-Type: application/json
 
-{"username" : "KHOO", "password" : 112233,"email" : "bo22120047@student.utem.edu.my"}
+{
+    "username" : "Ho",
+    "password" : "111111"
+}
+
+###
+POST http://localhost:3000/register
+//define the content type ---> json
+
+Content-Type: application/json
+
+{
+    "username" : "Goh",
+    "password" : "111111",
+    "name"     : "Goh",
+    "email"    : "goh@student.utem.edu.my"
+}
