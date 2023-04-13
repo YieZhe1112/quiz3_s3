@@ -2,26 +2,28 @@ GET http://localhost:3000
 
 ###
 
-Get http://localhost:3000/bye
+Get http://localhost:3000/check
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Iktob28iLCJwYXNzd29yZCI6IjExMjIzMyIsIm5hbWUiOiJLaG9vIiwiZW1haWwiOiJraG9vQHN0dWRlbnQudXRlbS5lZHUubXkiLCJpYXQiOjE2ODEzNzA4MzMsImV4cCI6MTY4MTM3MDg5M30.G905kyXpCHScXIuqRnd3pmfU8pSsHCX38_mVi6brIG4
 
-###
-POST http://localhost:3000/register
+{
+    "username" : "Khoo",
+    "password" : "112233"
+}
 
 ###
 POST http://localhost:3000/login
 //define the content type ---> json
-
 Content-Type: application/json
 
 {
-    "username" : "Ho",
-    "password" : "111111"
+    "username" : "Khoo",
+    "password" : "112233"
 }
 
 ###
 POST http://localhost:3000/register
 //define the content type ---> json
-
 Content-Type: application/json
 
 {
