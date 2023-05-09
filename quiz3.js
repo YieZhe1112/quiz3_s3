@@ -47,7 +47,7 @@ async function login(reqUsername,reqPassword){
           {username:{$eq:reqUsername}},
           {password:{$eq:reqPassword}}
           ]})
-  //console.log(matchUser)
+  console.log(matchUser)
 
   if(!matchUser) return "User not found!"
 
