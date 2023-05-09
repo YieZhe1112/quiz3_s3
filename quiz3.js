@@ -3,6 +3,22 @@ const app = express()
 const port = 3000
 const jwt = require('jsonwebtoken');
 
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://yiezhe1234:password01@cluster0.wahp7cl.mongodb.net/?retryWrites=true&w=majority";
+
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+
+client.connect().then(res=>{
+  console.log(res)
+})
+
 let dbUsers=[
   {   
       username : "Khoo",
@@ -24,8 +40,14 @@ let dbUsers=[
   }
 ]
 
-function login(reqUsername,reqPassword){
-  let matchUser = dbUsers.find(user => user.username == reqUsername) //=> means array dbUsers will pass every element it find into the variable "user"
+async function login(reqUsername,reqPassword){
+  //let matchUser = dbUsers.find(user => user.username == reqUsername) //=> means array dbUsers will pass every element it find into the variable "user"
+  let matchUser = await client.db("Benr_2423").collection("user")
+    .find({$and:[
+          {username:{$eq:reqUsername}},
+          {password:{$eq:reqPassword}}
+          ]})
+  //console.log(matchUser)
 
   if(!matchUser) return "User not found!"
 
@@ -38,18 +60,26 @@ function login(reqUsername,reqPassword){
 }
 
 function register(regUsername,regPassword,regName,regEmail){
-  dbUsers.push( //add the element into array dbUsers
-      {
-          username : regUsername,
-          password : regPassword,
-          name : regName,
-          email : regEmail
-      }
+  client.db("Benr_2423").collection("user").insertOne(  //create the database name(Benr_2423) then collection name(user)
+         {
+              username : regUsername,
+              password : regPassword,
+              name : regName,
+              email : regEmail
+          }
   )
+  // dbUsers.push( //add the element into array dbUsers
+  //     {
+  //         username : regUsername,
+  //         password : regPassword,
+  //         name : regName,
+  //         email : regEmail
+  //     }
+  // )
 }
 
 function generateToken(userData){
-  const token = jwt.sign(userData, 'passwordforthetoken',{ expiresIn : 60 }); //userData is the input of the token, 'passwordforthetoken' is the password of the token, expiresIn means the valid time of the token
+  const token = jwt.sign(userData, 'passwordforthetoken',{ expiresIn : 600 }); //userData is the input of the token, 'passwordforthetoken' is the password of the token, expiresIn means the valid time of the token
   return token;
 }
 
@@ -82,8 +112,8 @@ app.post('/login', (req, res) => { //req=requesr, res=response
   console.log(req.body)
 
   let result = login(req.body.username,req.body.password)
-  let token = generateToken(result)
-  res.send(token) 
+  //let token = generateToken(result)
+  //res.send(token) 
 })
 
 app.post('/register', (req, res) => {

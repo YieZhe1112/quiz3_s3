@@ -3,22 +3,16 @@ GET http://localhost:3000
 ###
 
 Get http://localhost:3000/check
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Iktob28iLCJwYXNzd29yZCI6IjExMjIzMyIsIm5hbWUiOiJLaG9vIiwiZW1haWwiOiJraG9vQHN0dWRlbnQudXRlbS5lZHUubXkiLCJpYXQiOjE2ODEzNzA4MzMsImV4cCI6MTY4MTM3MDg5M30.G905kyXpCHScXIuqRnd3pmfU8pSsHCX38_mVi6brIG4
-
-{
-    "username" : "Khoo",
-    "password" : "112233"
-}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Iktob28iLCJwYXNzd29yZCI6IjExMjIzMyIsIm5hbWUiOiJLaG9vIiwiZW1haWwiOiJraG9vQHN0dWRlbnQudXRlbS5lZHUubXkiLCJpYXQiOjE2ODEzNzIxNzcsImV4cCI6MTY4MTM3Mjc3N30.z1TKAwB20l7icVq-p-6-zQD2d7ku2e7nOYxl9ErkUCM
 
 ###
-POST http://localhost:3000/login
-//define the content type ---> json
-Content-Type: application/json
 
+POST http://localhost:3000/login
+Content-Type: application/json
+//define the content type ---> json
 {
-    "username" : "Khoo",
-    "password" : "112233"
+    "username" : "KHOO",
+    //"password" : 111111
 }
 
 ###
@@ -27,8 +21,8 @@ POST http://localhost:3000/register
 Content-Type: application/json
 
 {
-    "username" : "Goh",
-    "password" : "111111",
-    "name"     : "Goh",
+    "username" : "GOH",
+    "password" : 111111,
+    "name"     : "Goh Jia Xuen",
     "email"    : "goh@student.utem.edu.my"
 }
