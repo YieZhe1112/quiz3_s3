@@ -59,13 +59,14 @@ async function login(reqUsername,reqPassword){
   }
 }
 
-function register(regUsername,regPassword,regName,regEmail){
+function register(regUsername,regPassword,regName,regEmail,regPosition){
   client.db("Benr_2423").collection("user").insertOne(  //create the database name(Benr_2423) then collection name(user)
          {
               username : regUsername,
               password : regPassword,
               name : regName,
-              email : regEmail
+              email : regEmail,
+              role : regPosition
           }
   )
   // dbUsers.push( //add the element into array dbUsers
