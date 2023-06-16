@@ -117,13 +117,29 @@ app.post('/login', (req, res) => { //req=requesr, res=response
   //res.send(token) 
 })
 
-app.post('/register', (req, res) => {
-  console.log(req.body)
+app.post('/register',verifyToken, (req, res) => {
+  if(req.user.role == 'admin'){
+    console.log(req.body)
 
-  let result = register(req.body.username,req.body.password,req.body.name,req.body.email)
-  res.send(result) 
+    let result = register(req.body.username,req.body.password,req.body.name,req.body.email,req.body.role)
+    res.send(result) 
+  }
+  
+})
+
+app.get('/visitor',verifyToken, (req, res) => {
+  if(req.user.role == 'admin' || req.user.role == 'security'){    //req.user from verifyToken
+    const visitor=await client.db("Benr_2423").collection("visitor").find()
+  }
+
+  if(req.user.role == 'user'){
+    
+  }
+  
 })
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+//hjsvbsjvh
